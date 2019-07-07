@@ -20,6 +20,7 @@
                     <div class="btn btn-warning upload-file" data-toggle="modal" data-target="#select-file">Upload File</div>
                     <div class="btn btn-info resetRadViz">Reset RadViz</div>
                     <div class="btn btn-primary settings">Settings</div>
+                    <div class="btn btn-success help">Help</div>
                 </div>
             </div>
             <div class="row text-center">
@@ -105,6 +106,41 @@
                         </div>
 
 
+                        <div class="row text-center">
+                                    <div class="modal fade" id="help-section" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Help Section</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body" style="text-align: left;">
+                                                    <h2>Release notes</h2>
+                                                    <br>
+                                                    <div>Incase you have problem running the application head over to https://visual-analytics-radviz.herokuapp.com/ which contains the release version of the application.</div>
+                                                    <br>
+                                                    <h2>Description of Project</h2>
+                                                    <br>
+                                                    <div>Upload the file using the selection functionality or use the existing uploaded data set (Iris data set Or Wine data set)</div>
+                                                    <br>
+                                                    <div>Once the data set is selected, select the column you want as the target column, select color schema and select the height and width of the application to determine the radius</div>
+                                                    <h2>Project structure and libraries</h2>
+                                                    <div>Libraries used are: bootstrap, jquery and d3. D3 is the only library used for plotting</div>
+                                                    <br>
+                                                    <div>Data is uploaded in the data folder</div>
+                                                    <br>
+                                                    <div>Scripts are uploaded in the src folder</div>
+                                                    <br>
+                                                    <div>Index.php has been added to deploy it to Heroku, it serves no other purpose</div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                          <!-- modal for setting feature and target columns -->
             </div>

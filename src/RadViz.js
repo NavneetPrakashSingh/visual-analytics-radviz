@@ -50,7 +50,7 @@ DATA;
 		 dataE.forEach(function(d, i){
 			 if(colorspace.indexOf(d.color)<0) {
 				 colorspace.push(d.color); 
-				 colorclass.push(d.class); }
+				 colorclass.push(d[targetField]); }
 		 });	
 			 
 		 const radviz = d3.select(DOMRadViz);

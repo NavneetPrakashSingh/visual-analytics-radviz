@@ -140,7 +140,8 @@ function drawLegend(margin,chartRadius, center, colorspace, radiusDT, colorclass
             let tempa = d3.select(DOMRadViz).selectAll('.circle-data');
             tempa.nodes().forEach((element) => {
                 let tempb = element.getAttribute('id');
-                if (dataE[tempb].class != d) {
+                console.log(dataE[tempb].class);
+                if (dataE[tempb][targetField] != d) {
                     d3.select(element).attr('fill-opacity', 0.2).attr('stroke-width', 0);
                 }
             });

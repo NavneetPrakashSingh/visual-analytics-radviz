@@ -1,5 +1,6 @@
 let path = "";
 $(document).ready(function(){
+    $('#help-section').modal('toggle');
     $('input[type=file]').change(function () {
         var fileName = this.files[0].name;
         if(fileName == "iris.data.csv"){
@@ -26,6 +27,10 @@ $(document).ready(function(){
       }else{
           alert("please select a dataset first!");
       }
+  })
+
+  $('.help').click(function(){
+      $('#help-section').modal('toggle');
   })
 })
 
