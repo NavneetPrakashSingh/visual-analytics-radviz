@@ -1,4 +1,10 @@
 //draws the circumference for the circle
+/*
+|D3 methods used in the following function:
+|   .append(name_to_be_appended): Appends a new element with the specific name as the last child of element to which it is appended
+|   .attr(attribute_name, attribute_property): Helps to set attribute to a specific value
+|   .rgb(red,gree,blue): Specifies the color for d3 attribute element to be appended
+*/
 function drawCircumference(chartRadius, center) {
     let panel = center.append('circle')
         .attr('class', 'big-circle')
@@ -9,6 +15,17 @@ function drawCircumference(chartRadius, center) {
         .attr('cx', chartRadius)
         .attr('cy', chartRadius);
 }
+
+/*
+|   D3 methods used in the following function:
+|   .format(type_of_format): displays the data in the specified format E.g. .4r, .4f, .4n, .3n, etc
+|   .remove(): removes DOM elements 
+|   .selectAll(): Selecting all the DOM elements in order to do something on them
+|   .data(): specifies data on which the operation is to be performed
+|   .enter(): created the initial join of the data to the element
+|   .append(): adds the new element with the specified name to be added as the last child of each element
+|   .attr(attribute_name, attribute_property): Helps to set attribute to a specific value
+*/
 
 function drawDA(center, DAdata, radiusDA,svg,margin,chartRadius, DA,dataE,dimensionNamesNormalized,radiusDT){
     const formatnumber = d3.format(',d');	
@@ -49,19 +66,25 @@ function drawDA(center, DAdata, radiusDA,svg,margin,chartRadius, DA,dataE,dimens
                 d.x = chartRadius + Math.cos(newAngle) * chartRadius;
                 d.y = chartRadius + Math.sin(newAngle) * chartRadius;
                 d3.select(this).attr('cx', d.x).attr('cy', d.y);
-                // redraw the dimensional anchor and the label
                 drawDA(center, DAdata, radiusDA,svg,margin,chartRadius, DA,dataE,dimensionNamesNormalized,radiusDT);
                 drawDALabel(center, DAdata);
-                //update data points
-                // alert(newAngle);
                 DA[i] = newAngle;
                 calculateNodePosition(dataE, dimensionNamesNormalized, DA);
                 drawDT(center,dataE,radiusDT, chartRadius,svg,margin);
             })
         );
-}//end of function drawDA	
+}	
 
-
+/*
+|   D3 methods used in the following function:
+|   .remove(): removes DOM elements 
+|   .selectAll(): Selecting all the DOM elements in order to do something on them
+|   .data(): specifies data on which the operation is to be performed
+|   .enter(): created the initial join of the data to the element
+|   .append(): adds the new element with the specified name to be added as the last child of each element
+|   .attr(attribute_name, attribute_property): Helps to set attribute to a specific value
+|   .text(text_label): adds text label to the svg
+*/
 
 function drawDALabel(center, DAdata) {
     center.selectAll('text.DA-label').remove();
@@ -74,7 +97,19 @@ function drawDALabel(center, DAdata) {
         .attr('dy', d=>Math.sin(d.theta)<0?Math.sin(d.theta)*(15):Math.sin(d.theta)*(15)+ 10)
         .text(d => d.name)
         .attr('font-size', '18pt');					
-}//end of function drawDALabel
+}
+
+/*
+|   D3 methods used in the following function:
+|   .remove(): removes DOM elements 
+|   .selectAll(): Selecting all the DOM elements in order to do something on them
+|   .data(): specifies data on which the operation is to be performed
+|   .enter(): created the initial join of the data to the element
+|   .append(): adds the new element with the specified name to be added as the last child of each element
+|   .attr(attribute_name, attribute_property): Helps to set attribute to a specific value
+|   .mouse(current_mouse): Gets the current mouse position
+|   .transition(): Animates the current element to the new position
+*/
 
 function drawDT(center,dataE, radiusDT, chartRadius,svg,margin){
     center.selectAll('.circle-data').remove();
@@ -88,24 +123,24 @@ function drawDT(center,dataE, radiusDT, chartRadius,svg,margin){
         .attr('cx', d => d.x0*chartRadius + chartRadius)
         .attr('cy', d => d.y0*chartRadius + chartRadius)
         .on('mouseenter', function(d) {
-            let mouse = d3.mouse(this); //get current mouse position.
+            let mouse = d3.mouse(this); 
             let tip = svg.select('g.tip').selectAll('text').text(function(k, i){
                 return k + ': ' + d[k];
-            }); // edit tips text
-            // move tips position
+            });
             svg.select('g.tip').attr('transform',  `translate(${margin.left + mouse[0] +20},${margin.top+mouse[1] - 120})`);
-            // display the tip
             svg.select('g.tip').attr('display', 'block');
-            // highlight the point
             d3.select(this).raise().transition().attr('r', radiusDT*2).attr('stroke-width', 3);		
         })
         .on('mouseout', function(d) {
-            // close the tips.
             svg.select('g.tip').attr('display', 'none');
-            // dis-highlight the point
             d3.select(this).transition().attr('r', radiusDT).attr('stroke-width', 0.5);
         });					
-}// end of function drawDT		
+}	
+
+/*
+|   Calculates the position for the nodes. Normalized dimensions are passed and as mentioned in the research paper, the distances
+|   and the angles are calculated as shown below. 
+*/
 
 function calculateNodePosition(dataE, dimensionNamesNormalized, DA) {
     dataE.forEach(function(d) {
@@ -120,7 +155,18 @@ function calculateNodePosition(dataE, dimensionNamesNormalized, DA) {
         d.theta = Math.atan2(dy/dsum, dx/dsum) * 180 / Math.PI; 
     });
     return dataE;
-} // end of function calculateNodePosition()
+} 
+
+/*
+|   D3 methods used in the following function:
+|   .remove(): removes DOM elements 
+|   .selectAll(): Selecting all the DOM elements in order to do something on them
+|   .data(): specifies data on which the operation is to be performed
+|   .enter(): created the initial join of the data to the element
+|   .append(): adds the new element with the specified name to be added as the last child of each element
+|   .attr(attribute_name, attribute_property): Helps to set attribute to a specific value
+|   .text(text_label): adds text label to the svg
+*/
 
 function drawLegend(margin,chartRadius, center, colorspace, radiusDT, colorclass,dataE) {
     let heightLegend = 25, xLegend = margin.left+chartRadius*2, yLegend = 25;
@@ -136,19 +182,16 @@ function drawLegend(margin,chartRadius, center, colorspace, radiusDT, colorclass
         .attr('y', (d, i) => i*yLegend+5)
         .text(d => d).attr('font-size', '16pt').attr('dominat-baseline', 'middle')
         .on('mouseover', function(d){
-            //when mouse hover, other classes will be discolored.
             let tempa = d3.select(DOMRadViz).selectAll('.circle-data');
             tempa.nodes().forEach((element) => {
                 let tempb = element.getAttribute('id');
-                console.log(dataE[tempb].class);
                 if (dataE[tempb][targetField] != d) {
                     d3.select(element).attr('fill-opacity', 0.2).attr('stroke-width', 0);
                 }
             });
         })
         .on('mouseout', function(d) {
-            //when mouse move out, display normally.
             d3.select(DOMRadViz).selectAll('.circle-data')
                 .attr('fill-opacity', 1).attr('stroke-width', 0.5);
         });					
-}// end of function drawLegend()	
+}	

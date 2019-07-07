@@ -1,3 +1,7 @@
+/*
+| Flow of program: index.js -> RadViz.js -> RadVizPlotting.js
+*/
+
 let DOMRadViz,
 TableTitle, 
 ColorAccessor, 

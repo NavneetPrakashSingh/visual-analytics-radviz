@@ -1,11 +1,15 @@
-// dataset: iris
-// d3.csv('./data/iris.data.csv', function(error, data) {
+/*
+| Flow of program: index.js -> RadViz.js -> RadVizPlotting.js
+*/
+
+
 dataFromDataSet = "";
 targetField = "";
 completeData="";
 selectedColor = "";
 selectedHeight = "";
 selectedWidth ="";
+
 $(document).ready(function(){
     $('.save-changes').click(function(){
         if(path){
@@ -32,12 +36,6 @@ $(document).ready(function(){
             finalValueToBeAppended += "</form>";
             $('.modal-body-feature').append(finalValueToBeAppended);
             dataFromDataSet = data;
-            //console.log('index.js:titles', titles);
-            //console.log('index.js:colorAccessor', colorAccessor);
-            //console.log('index.js:dimensions', dimensions);
-            //console.log('index.js:dimensionAnchor', dimensionAnchor);
-            // outerDOMRadViz(IDradviz);
-            // call the plot function
         }); 
     }
 
@@ -75,19 +73,11 @@ $(document).ready(function(){
         $('#select-feature').modal('toggle');
         completeData = dataFromDataSet;
         delete(dataFromDataSet[targetField]);
-        const IDtable = document.querySelector('#data-table');//the container of table
-        const IDradviz = document.querySelector('#radviz');//the container of radviz
-        const titles = d3.keys(completeData[0]);//titles in the data table
-        const colorAccessor = function(d){ return d[targetField]; };//dimension used for coloring
-            // const dimensions = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar','chlorides','free sulfur dioxide','total sulfur dioxide','density','pH','sulphates','alcohol'];//dimensions used for RadViz.
-        // console.log(dataFromDataSet.);
-        
-        // console.log(dataFromDataSet[0]);
-        // console.log(dimensionValues);
-        // alert(dataFromDataSet.columns);
-        console.log(featureDataSet);
-        const dimensions = featureDataSet;//dimensions used for RadViz.
-        // const dimensions = d3.keys(dataFromDataSet[0]);
+        const IDtable = document.querySelector('#data-table');
+        const IDradviz = document.querySelector('#radviz');
+        const titles = d3.keys(completeData[0]);
+        const colorAccessor = function(d){ return d[targetField]; };
+        const dimensions = featureDataSet;
         const dimensionAnchor = Array.apply(null, {length: dimensions.length}).map(Number.call, Number).map(x=>x*2*Math.PI/(dimensions.length)); // intial DA configration;
         
 

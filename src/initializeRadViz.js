@@ -1,3 +1,7 @@
+/*
+|   Reference has been taken from : https://github.com/WYanChao/RadViz for Radviz visualization using D3js
+*/
+
 let path = "";
 $(document).ready(function(){
     $('#help-section').modal('toggle');
