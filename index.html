@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Visual Analytics Assignment 4 | B00810744</title>
+        <link rel="stylesheet" type="text/css" href="./libs/bootstrap.min.css">
+    </head>
+    <body>
+        <script src='./libs/bootstrap.min.js' defer></script>
+        <script src="./libs/jquery-2.1.4.min.js"></script>
+        <script src='./libs/d3.min.js' defer></script>
+        <script src='./src/RadViz.js' defer></script>	
+        <script src='./src/index.js' defer></script>
+        <script src='./src/initializeRadViz.js'></script>
+        <script src='./src/RadVizPlotting.js'></script>
+        
+        <div class="container ">
+            <div class="row text-center">
+                <div class="col lg-4">
+                    <h1>RadViz Visualization</h1> 
+                    <div class="btn btn-warning upload-file" data-toggle="modal" data-target="#select-file">Upload File</div>
+                    <div class="btn btn-info resetRadViz">Reset RadViz</div>
+                    <div class="btn btn-primary settings">Settings</div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <h1 class="message-visualize">No data set selected, please use upload file option and select the data set you want to visualize</h1>
+                    <div class="modal fade" id="select-file" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Please select the file to continue</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="file" id="fileUpload">
+                                    <div>Or Select the default files</div>
+                                    <div>
+                                            <input type="radio" id="iris-data-set-checkbox" name="dataSet" value="dewey">
+                                            <label for="iris-data-set-checkbox">Iris Data Set</label>
+                                          </div>
+                                          
+                                          <div>
+                                            <input type="radio" id="wine-data-set-checkbox" name="dataSet" value="louie">
+                                            <label for="wine-data-set-checkbox">Wine Data Set</label>
+                                          </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary save-changes">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- modal for setting feature and target columns -->
+                    <div class="modal fade" id="select-feature" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>  
+                                    <h4>Please select the target column from the available columns</h4>                                  
+                                    <div class="modal-body-feature" style="text-align: left; margin: 10px;">
+                                        
+                                    </div>
+                                    <div style="text-align: left; margin: 10px;">
+                                        <h4>Select color schema</h4>
+                                        <form id="select-color">
+                                        <div>
+                                            <div>
+                                                <input type="radio" id="schemeCategory20" name="color" value="schemeCategory20">
+                                                <label for="schemeCategory20">schemeCategory20</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="schemeCategory20b" name="color" value="schemeCategory20b">
+                                                <label for="schemeCategory20b">schemeCategory20b</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="schemeCategory20c" name="color" value="schemeCategory20c">
+                                                <label for="schemeCategory20c">schemeCategory20c</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+
+                                    <div style="text-align: left; margin: 10px;">
+                                        <h4>Enter your height and width, using this we would determine the radius of the circle. By default the height is 750px and width is 1200px</h4>
+                                        <input type="text" class="height-value" placeholder="Enter Height">
+                                        <br>
+                                        <input type="text" class="width-value" placeholder="Enter Width">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <button type="button" class="btn btn-primary save-changes-feature">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                         <!-- modal for setting feature and target columns -->
+            </div>
+            <div class="row">
+                <div id="radViz" class="radViz"></div>
+            </div>
+        </div>
+    </body>
+</html>
